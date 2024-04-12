@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <p>0</p>
+    <button>click me</button>
+</body>
+<script>
+    const p = document.getElementsByTagName("p").item(0);
+    const button = document.getElementsByTagName("button").item(0);
+    button.addEventListener("click", (target) => {
+        let num = Number.parseInt(p.innerText);
+        p.innerText = num + 1;
+    });
+</script>
+</html>
