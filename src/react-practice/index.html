@@ -9,25 +9,36 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const div = document.getElementById('btn');
+    let Count = 0;
 
-    const Title = (<h3 style={{ color: "red" }} onMouseEnter={
-        () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-    } >count: 0</h3>);
+    function Title() {
+        return (<h3 style={{ color: "red" }} onMouseEnter={
+            () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
+        } >count: 0</h3>);
+    }
 
-    const Button = (<button count="0" onClick={
-        () => {
-            let count = Number.parseInt(Button.props['count']) + 1;
-            Button.props['count'] = count;
-            const Title = (<h3 style={{ color: "red" }} onMouseEnter={
-                () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-            } >count: 0</h3>);
-            Title.props['children'] = `count: ${count}`;
-            const container = React.createElement("div", null, [Title, Button]);
-            ReactDOM.render(container, div);
-        }}>Click Me!</button>);
+    const Button = () => {
+        return (<button count={Count} onClick={
+            () => {
+                let count = Number.parseInt(Button().props['count']) + 1;
+                Count = count;
+                const Title = (<h3 style={{ color: "red" }} onMouseEnter={
+                    () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
+                } >count: 0</h3>);
+                Title.props['children'] = `count: ${Count}`;
+                const container = (<div>
+                    <Title />
+                    <Button />
+                </div>);
+                ReactDOM.render(container, div);
+            }}>Click Me!</button>);
+    };
 
-    const container = React.createElement("div", null, [Title, Button]);
-    ReactDOM.render(container, div);
+    const Container = (<div>
+        <Title />
+        <Button />
+    </div>);
+    ReactDOM.render(Container, div);
 
 </script>
 
