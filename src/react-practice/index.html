@@ -10,11 +10,12 @@
 <script type="text/babel">
     const div = document.getElementById('btn');
     let Count = 0;
+    let title = "count: 0";
 
     function Title() {
         return (<h3 style={{ color: "red" }} onMouseEnter={
             () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-        } >count: 0</h3>);
+        } children={title}></h3>);
     }
 
     const Button = () => {
@@ -22,10 +23,10 @@
             () => {
                 let count = Number.parseInt(Button().props['count']) + 1;
                 Count = count;
-                const Title = (<h3 style={{ color: "red" }} onMouseEnter={
+                title = `count: ${count}`;
+                const Title = () => (<h3 style={{ color: "red" }} onMouseEnter={
                     () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-                } >count: 0</h3>);
-                Title.props['children'] = `count: ${Count}`;
+                } children={title}></h3>);
                 const container = (<div>
                     <Title />
                     <Button />
