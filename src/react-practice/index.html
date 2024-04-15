@@ -2,44 +2,45 @@
 <html lang="en">
 
 <body>
-    <div id="btn"></div>
+    <div id="root"></div>
 </body>
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-    const div = document.getElementById('btn');
+    const root = document.getElementById('root');
     let Count = 0;
-    let title = "count: 0";
+
+    const Container = () => (<div>
+        <Title />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+        <Button />
+    </div>);
+
+    function render() {
+        ReactDOM.render(<Container />, root);
+    }
 
     function Title() {
         return (<h3 style={{ color: "red" }} onMouseEnter={
             () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-        } children={title}></h3>);
+        }>Count: {Count}</h3>);
     }
 
     const Button = () => {
-        return (<button count={Count} onClick={
-            () => {
-                let count = Number.parseInt(Button().props['count']) + 1;
-                Count = count;
-                title = `count: ${count}`;
-                const Title = () => (<h3 style={{ color: "red" }} onMouseEnter={
-                    () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-                } children={title}></h3>);
-                const container = (<div>
-                    <Title />
-                    <Button />
-                </div>);
-                ReactDOM.render(container, div);
-            }}>Click Me!</button>);
+        return (<button onClick={countUp}>Click Me!</button>);
     };
 
-    const Container = (<div>
-        <Title />
-        <Button />
-    </div>);
-    ReactDOM.render(Container, div);
+    
+    function countUp() {
+        Count = Count + 1;
+        render();
+    }
+
+    render();
 
 </script>
 
