@@ -9,35 +9,36 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById('root');
-    let Count = 0;
+    
+    const Container = () => {
+        const state = React.useState(0);
+        let [count, countUp] = state;
+        const reCount = () => {
+            countUp(count + 1);
+            console.log(state);
+        }
 
-    const Container = () => (<div>
+        function Title() {
+            return (<h3 style={{ color: "red" }} onMouseEnter={
+                () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
+            }>Count: {count}</h3>);
+        }
+    
+        const Button = () => {
+            return (<button onClick={reCount}>Click Me!</button>);
+        };
+
+        return (<div>
         <Title />
         <Button />
         <Button />
         <Button />
         <Button />
         <Button />
-    </div>);
+    </div>)};
 
     function render() {
         ReactDOM.render(<Container />, root);
-    }
-
-    function Title() {
-        return (<h3 style={{ color: "red" }} onMouseEnter={
-            () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-        }>Count: {Count}</h3>);
-    }
-
-    const Button = () => {
-        return (<button onClick={countUp}>Click Me!</button>);
-    };
-
-    
-    function countUp() {
-        Count = Count + 1;
-        render();
     }
 
     render();
