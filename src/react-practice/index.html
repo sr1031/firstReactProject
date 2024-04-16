@@ -12,30 +12,20 @@
     
     const Container = () => {
         const state = React.useState(0);
-        let [count, countUp] = state;
+        let [count, setCount] = state;
         const reCount = () => {
-            countUp(count + 1);
-            console.log(state);
+            setCount(count + 1);
         }
 
-        function Title() {
-            return (<h3 style={{ color: "red" }} onMouseEnter={
-                () => { console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉") }
-            }>Count: {count}</h3>);
-        }
-    
-        const Button = () => {
-            return (<button onClick={reCount}>Click Me!</button>);
-        };
+        return (
+            <div>
+                <h3 style={{color: 'red'}} onMouseEnter={() => {console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉")}}>
+                    count: {count}
+                </h3>
 
-        return (<div>
-        <Title />
-        <Button />
-        <Button />
-        <Button />
-        <Button />
-        <Button />
-    </div>)};
+                <button onClick={reCount}>Click Me!</button>
+            </div>);
+    };
 
     function render() {
         ReactDOM.render(<Container />, root);
