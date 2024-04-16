@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <body>
-    <div id="btn"></div>
+    <div id="root"></div>
 </body>
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script>
-    const div = document.getElementById('btn');
-    const h3 = React.createElement("h3", {style: {color: 'red'}, onMouseEnter: () => {
-        console.log("heeeeelllllloooooo");
-    }}, "count: 0");
-    const btn = React.createElement("button", {
-        count: 0,
-        onClick: () => {
-            let count = Number.parseInt(btn.props['count']) + 1;
-            btn.props['count'] = count;
-            const h3 = React.createElement("h3", {style : {color: 'red'}, onMouseEnter: () => {
-                console.log("heeeeelllllloooooo");
-            }}, `count: ${count}`);
-            const container = React.createElement("div", null, [h3, btn]);
-            ReactDOM.hydrate(container, div);
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById('root');
+    
+    const Container = () => {
+        const state = React.useState(0);
+        let [count, setCount] = state;
+        const reCount = () => {
+            setCount(count + 1);
         }
-    }, "click me");
-    const container = React.createElement("div", null, [h3, btn]);
-    ReactDOM.render(container, div);
+
+        return (
+            <div>
+                <h3 style={{color: 'red'}} onMouseEnter={() => {console.log("안녀영여여여여여ㅕㅇ 반가우어어어엉")}}>
+                    count: {count}
+                </h3>
+
+                <button onClick={reCount}>Click Me!</button>
+            </div>);
+    };
+
+    function render() {
+        ReactDOM.render(<Container />, root);
+    }
+
+    render();
 
 </script>
+
 </html>
